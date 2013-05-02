@@ -1,0 +1,6 @@
+*.exe
+libs
+.libs
+rock_tmp
+*.sublime-project
+*.sublime-workspace
