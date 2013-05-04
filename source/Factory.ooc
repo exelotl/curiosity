@@ -13,12 +13,9 @@ Factory: class {
 		
 		e: Entity
 		
-		data getElement() print()
-		
 		match (data getElement()) {
 			case "free_player" => e = FreePlayer new()
 			case "waking_player" => e = WakingPlayer new()
-			case "player" => e = Player new()
 			case "red_box_enemy" => e = RedBoxEnemy new(data)
 			case "dirt_block" => e = DirtBlock new(data)
 			case "seed" => e = Seed new(data)
@@ -272,9 +269,9 @@ Grapple: class extends Entity {
 			chain repeatY = max(holder y-y-6, 0) / chain height
 			match {
 				case firing =>
-					x += (holder x - x) * 0.4
+					x += (holder x - x) * dt * 30
 					y -= 300*dt
-					if (collide("non_grapple") || collide("solid", x, y+6)) {
+					if (collide("non_grapple") || collide("solid", x, y+10)) {
 						firing = false
 					}else if (collide("solid")) {
 						sticking = true
@@ -284,7 +281,7 @@ Grapple: class extends Entity {
 						firing = false
 					}
 				case retracting =>
-					x += (holder x - x) * 0.4
+					x += (holder x - x) * dt * 30
 					y += 400*dt
 					if (y > holder y - 9) {
 						y = holder y - 9
@@ -292,7 +289,7 @@ Grapple: class extends Entity {
 					}
 				case sticking =>
 					holderPhysics velY = -100
-					holderPhysics nudgeX = (x-holder x) * 0.6
+					holderPhysics nudgeX = (x-holder x) * dt * 30
 					if (y > holder y+2) {
 						sticking = false
 					}
@@ -301,8 +298,8 @@ Grapple: class extends Entity {
 						retracting = true
 					}
 				case =>
-					x += (holder x - x) * 0.4
-					y += (holder y - 9 - y) * 0.4
+					x += (holder x - x) * dt * 30
+					y += (holder y - 9 - y) * dt * 30
 					if (Input pressed("down"))
 						firing = true
 			}

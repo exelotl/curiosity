@@ -1,0 +1,5 @@
+Name: Curiosity
+Requires: vamos, mxml
+Description: An ambient exploration adventure.
+SourcePath: source
+Main: main.ooc

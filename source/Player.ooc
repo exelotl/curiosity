@@ -74,13 +74,15 @@ WakingPlayer: class extends Entity {
 		graphic = anim
 		type = "player"
 		layer = Layers player
-		add(Timer new~start(ANIM_WAKING length / 10, ||
+	}
+	update: func (dt:Double) {
+		if (anim index == ANIM_WAKING length-1) {
 			scene remove(this)
 			p := Player new()
 			p x = x
 			p y = y
 			scene add(p)
-		))
+		}
 	}
 }
 
