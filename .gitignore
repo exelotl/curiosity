@@ -1,4 +1,5 @@
 *.exe
+*.dll
 libs
 .libs
 rock_tmp
