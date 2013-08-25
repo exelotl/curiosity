@@ -25,16 +25,14 @@ Level: class extends Scene {
 		height = xml getAttr("height") toDouble()
 		
 		entities := xml findElement("entities")
-		entity := entities findElement(null)
 		
-		while (entity) {
-			e := Factory create(entity)
+		entities eachChildElement(|node|
+			e := Factory create(node)
 			if (e) {
 				add(e)
 				e class name println()
 			}
-			entity = entity findElement(entities, null)
-		}
+		)
 		
 		add(Map new(this, xml))
 	}
