@@ -1,5 +1,5 @@
 import math/Random
-import vamos/[Engine, Entity, Input, Component, Signal]
+import vamos/[Engine, Entity, Input, Component]
 import vamos/graphics/[FilledRect, Anim]
 import vamos/masks/Hitbox
 import vamos/comps/[Physics, Timer]
@@ -97,8 +97,6 @@ Player: class extends Entity {
 	
 	canWin := false
 	
-	onRespawn := VoidSignal new()
-	
 	init: func {
 		"PLAYER" println()
 		anim = Anim new("player.png", 14, 14) .center()
@@ -179,7 +177,7 @@ Player: class extends Entity {
 		mask = box
 		type = "player"
 		physics active = true
-		onRespawn dispatch()
+		broadcast("respawn")
 	}
 	
 	setSpawn: func (=spawnX, =spawnY)

@@ -1,6 +1,6 @@
 use mxml
 import math/Random
-import vamos/[Entity, Input, Util, Signal]
+import vamos/[Entity, Input, Util]
 import vamos/display/Color
 import vamos/graphics/[Image, RepeatImage, GraphicList, SpriteMap, Anim]
 import vamos/masks/[Hitbox, MaskList]
@@ -308,7 +308,7 @@ Grapple: class extends Entity {
 			if (holder)
 				holderPhysics = holder get("physics") as Physics
 			if (holderPhysics)
-				holder as Player onRespawn add(|| firing = sticking = retracting = false)	
+				on("respawn", || firing = sticking = retracting = false)
 			else holder = holderPhysics = null
 		}
 	}
