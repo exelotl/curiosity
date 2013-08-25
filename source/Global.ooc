@@ -40,12 +40,12 @@ Audio: class {
 		"playing song: %s" printfln(key)
 		
 		if (currentSong) 
-			currentSong volumeChange = -0.000002
+			currentSong fadeOut(4.0)
 		
 		if (songs[key]) {
 			currentSong = songs[key]
 			currentSong play()
-			currentSong volumeChange = 0.000005
+			currentSong fadeIn(4.0)
 		}
 	}
 }
